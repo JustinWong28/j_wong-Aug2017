@@ -10,6 +10,6 @@
 System.out.println(Calculate.square(5));
 System.out.println(Calculate.cubed(3));
 System.out.println(Calculate.average(20,25));
-System.out.println(Calculate.average2(20,40,30);
+System.out.println(Calculate.average2(20,40,30));
 	}
 }
