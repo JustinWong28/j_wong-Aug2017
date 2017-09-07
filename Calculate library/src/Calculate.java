@@ -33,7 +33,7 @@ public class Calculate {
 	}
 	
 	/*
-	 *  This methood accepts a double and returns a double
+	 *  This methood accepts a double and his returns a double
 	 */
 	public static double toDegrees (double degrees) {
 	return degrees*(3.14159/180);
@@ -60,5 +60,9 @@ public static String toImproperFrac (int a , int b, int c) {
 public static String toMixedNum (int a , int b) {
 	return (a/b) + " " + (a%b + "/" +b);
 }
-
+/* this method acepts a four integers and a string and then returns a string
+ */
+ public static String foil ( int a , int  b , int c , int d) {
+ return ((a*c) + "x^2" + "+" + ((c-a) + "x") + "+" + (b*d));
+}
 }
