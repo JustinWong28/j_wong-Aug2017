@@ -122,4 +122,6 @@ public static double round2 (double a) {
 		return (10-a * 1000 % 10 + a * 1000)/ 1000;
 	}
 }
+public static double exponent {
+	for
 }
