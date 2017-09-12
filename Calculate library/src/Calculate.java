@@ -116,8 +116,10 @@ public static int min (int a, int b) {
 	return a;
 }
 public static double round2 (double a) {
-	double b=(a*100);
-	double c=(b/100);
-	return c;
+	if (a*1000 % 10 <5) {
+		return (a * 1000 -a * 1000 % 10) / 1000;
+	}else {
+		return (10-a * 1000 % 10 + a * 1000)/ 1000;
+	}
 }
 }
