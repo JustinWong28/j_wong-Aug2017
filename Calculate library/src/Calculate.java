@@ -65,4 +65,16 @@ public static String toMixedNum (int a , int b) {
  public static String foil ( int a , int  b , int c , int d) {
  return ((a*c) + "x^2" + "+" + ((c-a) + "x") + "+" + (b*d));
 }
+/* this method accepts two integers and returns a boolean
+ */ 
+ public static boolean isDivisibleBy (int a , int b) {
+	if (a%b==0) {
+		return true;
+	}else {
+		return false;
+	}
+	publc static double absValue (double a) {
+	
+	}
+ }
 }

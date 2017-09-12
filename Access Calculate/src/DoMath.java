@@ -17,5 +17,6 @@ System.out.println(Calculate.Discriminant(1, 2, 3));
 System.out.println(Calculate.toImproperFrac(3, 1, 2));
 System.out.println(Calculate.toMixedNum(7 , 2));
 System.out.println(Calculate.foil(2, 3, 6, -7));
+
 	}
 }
