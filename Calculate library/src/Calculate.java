@@ -116,7 +116,7 @@ public static int min (int a, int b) {
 	return a;
 }
 public static double round2 (double a) {
-	double b=(a*1000);
+	double b=(a*100);
 	double c=(b/100);
 	return c;
 }
