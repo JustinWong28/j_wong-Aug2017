@@ -115,7 +115,7 @@ public class Calculate {
 			return a;
 		} else if (a == 0) {
 			return 0.;
-		} else {// why can't I use else if
+		} else {
 			return -a;
 		}
 	}
@@ -127,9 +127,9 @@ public class Calculate {
 	public static double max(double a, double b) {
 		if (a > b) {
 			return a;
-		} else {// why can't i use else if
+		} else {
 			return b;
-		} // what if a==b
+		} 
 	}
 
 	/*
@@ -216,10 +216,9 @@ public class Calculate {
 		 */
 		int factorCount = 1;
 		for (int i = 2; i < number; i++) {
-			// i=2 because factor of 1 already works for every number
 			boolean test = isDivisibleBy(number, i);
 			if (test == true) {
-				factorCount++;// counts # of factors
+				factorCount++;
 			}
 		}
 		if (factorCount > 1) {
