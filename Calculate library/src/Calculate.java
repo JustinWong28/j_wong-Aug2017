@@ -266,7 +266,5 @@ public class Calculate {
 		double answer = round2(root);
 		return answer;
 	}
-	
 }
-
 

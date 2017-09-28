@@ -1,10 +1,8 @@
 
 public class Hello_world {
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}System.out.println("/\\"
-			System.out.println()
-
+	
+	public static int expression(int operand) {
+		int expression = 85 % 10 + 4 % 10 - 17 % 3;
+		return (expression);
+	}
 }
