@@ -266,5 +266,23 @@ public class Calculate {
 		double answer = round2(root);
 		return answer;
 	}
-}
+	/* this method accepts three integers and returns a string
+	 * The method should check the discriminant to determine the number of roots to expect
+	 * if there are no real roots, the method must return the String: "no real roots"
+	 */
+	public static String quadForm( int a , int b, int c) {
+		String answer= "";
+		if (discriminant(a,b,c) < 0) {
+			answer+= "no real roots";
+		}else if(discriminant( a,b,c)==0) {
+			answer+= round2(-b/2*a);
+		}else  {
+			double answer1 = ((-b + sqrt(discriminant(a,b,c)))/(2*a));
+			double answer2 = ((-b - sqrt(discriminant(a,b,c)))/(2*a));
+			answer += round2(answer1) + " and " + round2(answer2);
+		}
+		return answer;
+			}
+	}
+
 
