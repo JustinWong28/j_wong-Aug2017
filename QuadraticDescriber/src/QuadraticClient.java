@@ -24,12 +24,12 @@ public class QuadraticClient {
 			double coeffC = userInput.nextDouble();
 
 			System.out.println(Quadratic.quadrDescriber(coeffA, coeffB, coeffC));
-		}
 
-		System.out.println("Do you want to quit? Type \"quit\" to end");
-		String exit = userInput.next();
-		if (exit.equals("quit")) {
-			done = true;
+			System.out.println("Do you want to quit? Type \"quit\" to end");
+			String exit = userInput.next();
+			if (exit.equals("quit")) {
+				done = true;
+			}
 		}
 	}
 }
