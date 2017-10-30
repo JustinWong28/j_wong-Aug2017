@@ -24,13 +24,15 @@ public class Split {
 		 * use String.split to split up the sandwich by the word "bread" and return what's in the middle of the sandwich and ignores what's on the outside
 		 * What if it's a fancy sandwich with multiple pieces of bread?
 		 */
-
+System.out.println(Arrays.toString("applespineapplesbreadlettustomatobaconmayohambreadcheese".split("bread")));
 
 		//Your task pt 2:
 		/*Write a method that take in a string like "apples pineapples bread lettus tomato bacon mayo ham bread cheese" describing a sandwich
 		 * use String.split to split up the sandwich at the spaces, " ", and return what's in the middle of the sandwich and ignores what's on the outside
 		 * Again, what if it's a fancy sandwich with multiple pieces of bread?
 		 */
+System.out.println(Arrays.toString("apples pineapples bread lettus tomato bacon mayo ham bread cheese".split(" bread ")));
+
 	}
 public static String[] splitSandwich (String sandwich) {
 	String[] components= "applespineapplesbreadlettustomatobaconmayohambreadcheese".split("bread");
