@@ -21,6 +21,8 @@ public class FracCalc {
     //      e.g. return ==> "1_1/4"
     public static String produceAnswer(String input) {
     	String[] produceAnswer =  input.split(" ");
+    	String operand1 = produceAnswer[0];
+    	String operator = produceAnswer[1];
     	String operand2 = produceAnswer[2];
     	// TODO: Implement this function to produce the solution to the input
         
