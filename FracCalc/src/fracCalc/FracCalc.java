@@ -4,9 +4,15 @@ public class FracCalc {
 
     public static void main(String[] args) {
     	Scanner userInput = new Scanner(System.in);
-    	String input = userInput.next();
-    	String answer= produceAnswer(input);
-    	System.out.println(answer);
+    	boolean done = false;
+    			while(!done) {
+    				String Frac = userInput.nextLine();
+    				String answer = produceAnswer(Frac);
+    				System.out.println(answer);
+    				if (Frac.equals("quit")) {
+    					done = true;
+    				}
+    			}
         // TODO: Read the input from the user and call produceAnswer with an equation
 
     }
@@ -22,11 +28,18 @@ public class FracCalc {
     public static String produceAnswer(String input) {
     	String[] produceAnswer =  input.split(" ");
     	String operand1 = produceAnswer[0];
-    	String operator = produceAnswer[1];
     	String operand2 = produceAnswer[2];
+    	splitOperand(operand1);
+    	return splitOperand(operand2);
     	// TODO: Implement this function to produce the solution to the input
-        
-        return operand2;
+       
+    	public static String splitOperand (String operand) {
+        String whole = "";
+        String numerator = "";
+        String denominator = "";
+        if (operand.indexOf("_") >= 0) {
+        	
+        }
     }
 
     // TODO: Fill in the space below with any helper methods that you think you will need
