@@ -36,7 +36,8 @@ public class FracCalc {
 		String[] produceAnswer =  input.split(" ");
 		String operand1 = produceAnswer[0];
 		String operand2 = produceAnswer[2];
-		String answer = "whole:" +[0] "numerator:" +[1] "denominator:" +[2];
+		splitOperand(operand2);
+		String answer = "whole:" +splitOperand(operand2)[0] + " numerator:" +splitOperand(operand2)[1]  +" denominator:" +splitOperand(operand2)[2];
 		return answer;
 	}
 		// TODO: Implement this function to produce the solution to the input
@@ -45,26 +46,25 @@ public class FracCalc {
 			String whole = "";
 			String numerator = "";
 			String denominator = "";
-			String[] results = {whole, numerator, denominator};
+			
 			if (operand.indexOf("_") >= 0) {
 				int underscore = operand.indexOf("_");
 				int slash = operand.indexOf("/");
 				whole = operand.substring(0 , underscore);
 				numerator = operand.substring(underscore+1, slash);
-				denominator = operand.substring(slash, operand.length());
+				denominator = operand.substring(slash+1, operand.length());
 			}else if ((operand.indexOf("_") < 0) && (operand.indexOf("/") >= 0)) {
 				int slash = operand.indexOf("/");
 				whole = "0";
 				numerator = operand.substring(0 , slash);
-				denominator = operand.substring(slash, operand.length());
+				denominator = operand.substring(slash+1, operand.length());
 			}else if ((operand.indexOf("_") < 0) && (operand.indexOf("/") < 0)) {
 				whole = operand;
 				numerator = "0";
 				denominator = "1";
 			}
-				
-			
-			return results;
+			String[] results = {whole, numerator, denominator};
+				return results;
 		}		
 	}
 
