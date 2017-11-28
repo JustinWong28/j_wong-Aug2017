@@ -36,13 +36,15 @@ public class FracCalc {
 		String[] produceAnswer =  input.split(" ");
 		String operand1 = produceAnswer[0];
 		String operand2 = produceAnswer[2];
-		splitOperand(operand2);
-		String answer = "whole:" +splitOperand(operand2)[0] + " numerator:" +splitOperand(operand2)[1]  +" denominator:" +splitOperand(operand2)[2];
+		//splitOperand(operand2);
+		//splitOperand(operand1);
+		//String answer = "whole:" +splitOperand(operand2)[0] + " numerator:" +splitOperand(operand2)[1]  +" denominator:" +splitOperand(operand2)[2];
 		return answer;
 	}
-		// TODO: Implement this function to produce the solution to the input
+	public static int[] ToImproperFrac(String operand) {
+		
 
-		public static String[] splitOperand(String operand) {
+	// TODO: Implement this function to produce the solution to the input
 			String whole = "";
 			String numerator = "";
 			String denominator = "";
@@ -63,8 +65,16 @@ public class FracCalc {
 				numerator = "0";
 				denominator = "1";
 			}
-			String[] results = {whole, numerator, denominator};
+				int wholeNum = Integer.parseInt(whole);
+				int Numerador = Integer.parseInt(numerator);
+				int Denominador = Integer.parseInt(denominator);
+				int NewNumerator = ((wholeNum * Denominador) + Numerador) / Denominador;
+				int[] results = {NewNumerator, Denominador};
 				return results;
-		}		
+	}	
+	public static int[] AddSubtractOperand (int[] operand1, int[] operand2, String[] operator) {
+		int CommonDenominator = ;
+		
 	}
 
+}
