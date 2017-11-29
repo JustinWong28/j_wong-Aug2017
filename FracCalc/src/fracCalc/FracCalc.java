@@ -36,12 +36,19 @@ public class FracCalc {
 		String[] produceAnswer =  input.split(" ");
 		String operand1 = produceAnswer[0];
 		String operand2 = produceAnswer[2];
+		String operator = produceAnswer[1];
+		int slash1 = operand1.indexOf("/");
+		int slash2 = operand2.indexOf("/");
+		int numer1 = Integer.parseInt(operand1.substring(0, slash1).trim());
+		int numer2 = Integer.parseInt(operand2.substring(0, slash2).trim());
+		
+		
 		//splitOperand(operand2);
 		//splitOperand(operand1);
 		//String answer = "whole:" +splitOperand(operand2)[0] + " numerator:" +splitOperand(operand2)[1]  +" denominator:" +splitOperand(operand2)[2];
 		return answer;
 	}
-	public static int[] ToImproperFrac(String operand) {
+	public static int[] toImproperFrac(String operand) {
 		
 
 	// TODO: Implement this function to produce the solution to the input
@@ -66,14 +73,14 @@ public class FracCalc {
 				denominator = "1";
 			}
 				int wholeNum = Integer.parseInt(whole);
-				int Numerador = Integer.parseInt(numerator);
-				int Denominador = Integer.parseInt(denominator);
-				int NewNumerator = ((wholeNum * Denominador) + Numerador) / Denominador;
-				int[] results = {NewNumerator, Denominador};
+				int numerador = Integer.parseInt(numerator);
+				int denominador = Integer.parseInt(denominator);
+				int newNumerator = ((wholeNum * denominador) + numerador) / denominador;
+				int[] results = {newNumerator, denominador};
 				return results;
 	}	
 	public static int[] AddSubtractOperand (int[] operand1, int[] operand2, String[] operator) {
-		int CommonDenominator = ;
+		int commonDenominator = ;
 		
 	}
 
