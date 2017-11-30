@@ -7,11 +7,11 @@ public class FracCalc {
 	public static void main(String[] args) {
 		Scanner userInput = new Scanner(System.in);
 		boolean done = false;
-		while (!done) {
-			String Frac = userInput.nextLine();
-			String answer = produceAnswer(Frac);
+		while(!done) {
+			String formula = userInput.nextLine();
+			String answer = produceAnswer(formula);
 			System.out.println(answer);
-			if (Frac.equals("quit")) {
+			if(formula.equals("quit")) {
 				done = true;
 			}
 		}
@@ -57,11 +57,44 @@ public class FracCalc {
 		
 		int slash = answer.indexOf("/");
 		int numer = Integer.parseInt(answer.substring(0, 1));
-		int denom = Integer.parseInt(answer.substring(slash + 1, operand.length));
-		
+		int denom = Integer.parseInt(answer.substring(slash + 1, answer.length()));
 		return answer;
 	}
-	public static String toImproperFrac(String operand) {
+	
+	
+	public static String addSubtract (int numer1, int numer2, int denom1, int denom2, String operator) {
+		String answer;
+		int numerator = 0;
+		
+		if (operator.equals("+")) {
+			if (numer1 == 0 || numer2 == 0) {
+				answer = "0";
+			}
+			numerator = (numer1 * denom2 + numer2 * denom1);
+			
+		}else if (operator.equals("-")) {
+			numerator = (numer1 * denom2 - numer2 * denom1);
+		}
+		int denominator = denom1 * denom2;
+		answer = numerator + "/" + denominator;
+		return answer;
+	}
+
+	public static String multiplyDivide ( int numer1, int numer2, int denom1, int denom2, String operator) {
+		String answer;
+		int numerator = 0;
+		int denominator = 0;
+		if(operator.equals("*")) {
+			numerator = (numer1 * numer2);
+			denominator = (denom1 * denom2);
+		}else if (operator.equals("/")) {
+			numerator = (numer1 * denom2);
+			denominator = (denom1 * numer2);
+		}
+		answer = numerator + "/" + denominator;
+		return answer;
+	}
+public static String toImproperFrac(String operand) {
 		
 		// TODO: Implement this function to produce the solution to the input
 		String whole = "";
@@ -73,13 +106,13 @@ public class FracCalc {
 		if (operand.indexOf("_") >= 0) {
 			
 			whole = operand.substring(0 , underscore);
-			numerator = operand.substring(underscore+1, slash);
-			denominator = operand.substring(slash+1, operand.length());
+			numerator = operand.substring(underscore + 1, slash);
+			denominator = operand.substring(slash + 1, operand.length());
 		}else if ((operand.indexOf("_") < 0) && (operand.indexOf("/") >= 0)) {
 			
 			whole = "0";
 			numerator = operand.substring(0 , slash);
-			denominator = operand.substring(slash+1, operand.length());
+			denominator = operand.substring(slash + 1, operand.length());
 		}else if ((operand.indexOf("_") < 0) && (operand.indexOf("/") < 0)) {
 			
 			whole = operand;
@@ -102,36 +135,4 @@ public class FracCalc {
 		return improper;
 	}	
 	
-	public static String addSubtract (int numer1, int numer2, int denom1, int denom2, String operator) {
-		String answer;
-		int numerator = 0;
-		int denominator = denom1 * denom2;
-		if (operator.equals("+")) {
-			if (numer1 == 0 || numer2 == 0) {
-				answer = "0";
-			}
-			numerator = ((numer1 * denom2) + (numer2 * denom1));
-		}else if (operator.equals("-")) {
-			numerator = ((numer1 * denom2) - (numer2 * denom1));
-		}
-		
-		answer = numerator + "/" + denominator;
-			
-		return answer;
-	}
-
-	public static String multiplyDivide ( int numer1, int numer2, int denom1, int denom2, String operator) {
-		String answer;
-		int numerator = 0;
-		int denominator = 0;
-		if(operator.equals("*")) {
-			numerator = (numer1 * numer2);
-			denominator = (denom1 * denom2);
-		}else if (operator.equals("/")) {
-			numerator = (numer1 * denom2);
-			denominator = (denom1 * numer2);
-		}
-		answer = numerator + "/" + denominator;
-		return answer;
-	}
 }
