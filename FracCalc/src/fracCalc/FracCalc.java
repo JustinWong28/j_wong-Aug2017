@@ -89,7 +89,6 @@ public class FracCalc {
 		int wholeNum = Integer.parseInt(whole.trim());
 		int numer = Integer.parseInt(numerator.trim());
 		int denom = Integer.parseInt(denominator.trim());
-		int newNumerator = ((wholeNum * denom) + numer) / denom;
 		int top;
 		if(operand.substring(0,1).equals("-") && wholeNum != 0) {
 			top = wholeNum * denom - numer;
@@ -106,13 +105,18 @@ public class FracCalc {
 	public static String addSubtract (int numer1, int numer2, int denom1, int denom2, String operator) {
 		String answer;
 		int numerator = 0;
-		if (operator.equals("+")) {
-			numerator = ((numer1 * denom2) +(numer2 * denom1));
-		}else if (operator.equals("-")) {
-			numerator = ((numer1 * denom2) - (numer2*denom1));
-		}
 		int denominator = denom1 * denom2;
-		answer = numerator +"/" + denominator;
+		if (operator.equals("+")) {
+			if (numer1 == 0 || numer2 == 0) {
+				answer = "0";
+			}
+			numerator = ((numer1 * denom2) + (numer2 * denom1));
+		}else if (operator.equals("-")) {
+			numerator = ((numer1 * denom2) - (numer2 * denom1));
+		}
+		
+		answer = numerator + "/" + denominator;
+			
 		return answer;
 	}
 
