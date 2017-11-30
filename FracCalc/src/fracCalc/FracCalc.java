@@ -13,13 +13,13 @@ public class FracCalc {
 			System.out.println(answer);
 			if (Frac.equals("quit")) {
 				done = true;
-		}
+			}
 		}
 	}
-		
-		// TODO: Read the input from the user and call produceAnswer with an equation
 
-	
+	// TODO: Read the input from the user and call produceAnswer with an equation
+
+
 
 	// ** IMPORTANT ** DO NOT DELETE THIS FUNCTION. This function will be used to
 	// test your code
@@ -33,55 +33,101 @@ public class FracCalc {
 	// calculated
 	// e.g. return ==> "1_1/4"
 	public static String produceAnswer(String input) {
-		String[] produceAnswer =  input.split(" ");
-		String operand1 = produceAnswer[0];
-		String operand2 = produceAnswer[2];
-		String operator = produceAnswer[1];
+		String[] operand =  input.split(" ");
+		String operand1 = toImproperFrac(operand[0]);
+		String operand2 = toImproperFrac(operand[2]);
+		String operator = operand[1];
+		String answer = "";
 		int slash1 = operand1.indexOf("/");
 		int slash2 = operand2.indexOf("/");
 		int numer1 = Integer.parseInt(operand1.substring(0, slash1).trim());
 		int numer2 = Integer.parseInt(operand2.substring(0, slash2).trim());
+		int denom1 = Integer.parseInt(operand1.substring(slash1 + 1, operand1.length()).trim());
+		int denom2 = Integer.parseInt(operand2.substring(slash2 + 1, operand2.length()).trim());
 		
+		if(operator.equals("+")) {
+			answer = addSubtract(numer1, numer2, denom1, denom2, operator);
+		}else if (operator.equals("-")) {
+			answer = addSubtract(numer1, numer2, denom1, denom2, operator);
+		}else if (operator.equals("*")) {
+			answer = multiplyDivide(numer1, numer2, denom1, denom2, operator);
+		}else if (operator.equals("/")) {
+			answer = multiplyDivide(numer1, numer2 , denom1, denom2, operator);
+		}
 		
-		//splitOperand(operand2);
-		//splitOperand(operand1);
-		//String answer = "whole:" +splitOperand(operand2)[0] + " numerator:" +splitOperand(operand2)[1]  +" denominator:" +splitOperand(operand2)[2];
+		int slash = answer.indexOf("/");
+		int numer = Integer.parseInt(answer.substring(0, 1));
+		int denom = Integer.parseInt(answer.substring(slash + 1, operand.length));
+		
 		return answer;
 	}
-	public static int[] toImproperFrac(String operand) {
+	public static String toImproperFrac(String operand) {
 		
-
-	// TODO: Implement this function to produce the solution to the input
-			String whole = "";
-			String numerator = "";
-			String denominator = "";
+		// TODO: Implement this function to produce the solution to the input
+		String whole = "";
+		String numerator = "";
+		String denominator = "";
+		int underscore = operand.indexOf("_");
+		int slash = operand.indexOf("/");
+		
+		if (operand.indexOf("_") >= 0) {
 			
-			if (operand.indexOf("_") >= 0) {
-				int underscore = operand.indexOf("_");
-				int slash = operand.indexOf("/");
-				whole = operand.substring(0 , underscore);
-				numerator = operand.substring(underscore+1, slash);
-				denominator = operand.substring(slash+1, operand.length());
-			}else if ((operand.indexOf("_") < 0) && (operand.indexOf("/") >= 0)) {
-				int slash = operand.indexOf("/");
-				whole = "0";
-				numerator = operand.substring(0 , slash);
-				denominator = operand.substring(slash+1, operand.length());
-			}else if ((operand.indexOf("_") < 0) && (operand.indexOf("/") < 0)) {
-				whole = operand;
-				numerator = "0";
-				denominator = "1";
-			}
-				int wholeNum = Integer.parseInt(whole);
-				int numerador = Integer.parseInt(numerator);
-				int denominador = Integer.parseInt(denominator);
-				int newNumerator = ((wholeNum * denominador) + numerador) / denominador;
-				int[] results = {newNumerator, denominador};
-				return results;
+			whole = operand.substring(0 , underscore);
+			numerator = operand.substring(underscore+1, slash);
+			denominator = operand.substring(slash+1, operand.length());
+		}else if ((operand.indexOf("_") < 0) && (operand.indexOf("/") >= 0)) {
+			
+			whole = "0";
+			numerator = operand.substring(0 , slash);
+			denominator = operand.substring(slash+1, operand.length());
+		}else if ((operand.indexOf("_") < 0) && (operand.indexOf("/") < 0)) {
+			
+			whole = operand;
+			numerator = "0";
+			denominator = "1";
+		}
+		int wholeNum = Integer.parseInt(whole.trim());
+		int numer = Integer.parseInt(numerator.trim());
+		int denom = Integer.parseInt(denominator.trim());
+		int newNumerator = ((wholeNum * denom) + numer) / denom;
+		int top;
+		if(operand.substring(0,1).equals("-") && wholeNum != 0) {
+			top = wholeNum * denom - numer;
+		}else if (operand.substring(0,1).equals("-") && wholeNum == 0){
+			top = numer;
+		}else {
+			top = wholeNum * denom + numer;
+		} 
+		String improper;
+		improper = top + "/" + denom;
+		return improper;
 	}	
-	public static int[] AddSubtractOperand (int[] operand1, int[] operand2, String[] operator) {
-		int commonDenominator = ;
-		
+	
+	public static String addSubtract (int numer1, int numer2, int denom1, int denom2, String operator) {
+		String answer;
+		int numerator = 0;
+		if (operator.equals("+")) {
+			numerator = ((numer1 * denom2) +(numer2 * denom1));
+		}else if (operator.equals("-")) {
+			numerator = ((numer1 * denom2) - (numer2*denom1));
+		}
+		int denominator = denom1 * denom2;
+		answer = numerator +"/" + denominator;
+		return answer;
 	}
 
+	public static String multiplyDivide ( int numer1, int numer2, int denom1, int denom2, String operator) {
+		String answer;
+		int numerator = 0;
+		int denominator = 0;
+		if(operator.equals("*")) {
+			numerator = (numer1 * numer2);
+			denominator = (denom1 * denom2);
+		}else if (operator.equals("/")) {
+			numerator = (numer1 * denom2);
+			denominator = (denom1 * numer2);
+		}
+		answer = numerator + "/" + denominator;
+		return answer;
+	}
 }
