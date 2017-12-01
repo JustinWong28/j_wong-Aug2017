@@ -1,3 +1,6 @@
+//Justin Wong
+//November 30, 2017
+//Frac Calc 
 package fracCalc;
 
 import java.util.*;
@@ -34,69 +37,54 @@ public class FracCalc {
 	// e.g. return ==> "1_1/4"
 	public static String produceAnswer(String input) {
 		String[] operand =  input.split(" ");
-		String operand1 = toImproperFrac(operand[0]);
-		String operand2 = toImproperFrac(operand[2]);
+		int[] operand1 = toImproperFrac(operand[0]);
+		int[] operand2 = toImproperFrac(operand[2]);
 		String operator = operand[1];
-		String answer = "";
-		int slash1 = operand1.indexOf("/");
-		int slash2 = operand2.indexOf("/");
-		int numer1 = Integer.parseInt(operand1.substring(0, slash1).trim());
-		int numer2 = Integer.parseInt(operand2.substring(0, slash2).trim());
-		int denom1 = Integer.parseInt(operand1.substring(slash1 + 1, operand1.length()).trim());
-		int denom2 = Integer.parseInt(operand2.substring(slash2 + 1, operand2.length()).trim());
+		int[] answer = new int[2];
 		
-		if(operator.equals("+")) {
-			answer = addSubtract(numer1, numer2, denom1, denom2, operator);
-		}else if (operator.equals("-")) {
-			answer = addSubtract(numer1, numer2, denom1, denom2, operator);
-		}else if (operator.equals("*")) {
-			answer = multiplyDivide(numer1, numer2, denom1, denom2, operator);
-		}else if (operator.equals("/")) {
-			answer = multiplyDivide(numer1, numer2 , denom1, denom2, operator);
+		if(operator.equals("+") || operator.equals("-")) {
+			answer = addSubtract(operand1, operand2, operator);
+		
+		}else if (operator.equals("*") || operator.equals("/")) {
+			answer = multiplyDivide(operand1, operand2, operator);
 		}
-		
-		int slash = answer.indexOf("/");
-		int numer = Integer.parseInt(answer.substring(0, 1));
-		int denom = Integer.parseInt(answer.substring(slash + 1, answer.length()));
-		return answer;
+		String reducedAnswer = reduceAnswer(answer);
+		return reducedAnswer;
 	}
 	
 	
-	public static String addSubtract (int numer1, int numer2, int denom1, int denom2, String operator) {
-		String answer;
+	public static int[] addSubtract (int[] operand1, int[] operand2, String operator) {
 		int numerator = 0;
 		
 		if (operator.equals("+")) {
-			if (numer1 == 0 || numer2 == 0) {
-				answer = "0";
-			}
-			numerator = (numer1 * denom2 + numer2 * denom1);
+			numerator = (operand1[0] * operand2[1] + operand2[0] * operand1[1]);
 			
 		}else if (operator.equals("-")) {
-			numerator = (numer1 * denom2 - numer2 * denom1);
+			numerator = (operand1[0] * operand2[1] - operand2[0] * operand1[1]);
 		}
-		int denominator = denom1 * denom2;
-		answer = numerator + "/" + denominator;
-		return answer;
+		int denominator = operand1[1] * operand2[1];
+		int[] answer = {numerator, denominator};
+ 		return answer;
 	}
 
-	public static String multiplyDivide ( int numer1, int numer2, int denom1, int denom2, String operator) {
-		String answer;
+	public static int[] multiplyDivide (int[] operand1, int[] operand2, String operator) {
 		int numerator = 0;
 		int denominator = 0;
 		if(operator.equals("*")) {
-			numerator = (numer1 * numer2);
-			denominator = (denom1 * denom2);
+			numerator = (operand1[0] * operand2[0]);
+			denominator = (operand1[1] * operand2[1]);
 		}else if (operator.equals("/")) {
-			numerator = (numer1 * denom2);
-			denominator = (denom1 * numer2);
+			if (operand2[0] < 0) {
+				operand2[1] *= -1;
+				operand2[0] *= -1;
+			}
+			numerator = (operand1[0] * operand2[1]);
+			denominator = (operand1[1] * operand2[0]);
 		}
-		answer = numerator + "/" + denominator;
+		int[] answer = {numerator, denominator};
 		return answer;
 	}
-public static String toImproperFrac(String operand) {
-		
-		// TODO: Implement this function to produce the solution to the input
+	public static int[] toImproperFrac(String operand) {
 		String whole = "";
 		String numerator = "";
 		String denominator = "";
@@ -130,9 +118,44 @@ public static String toImproperFrac(String operand) {
 		}else {
 			top = wholeNum * denom + numer;
 		} 
-		String improper;
-		improper = top + "/" + denom;
+		int[] improper = {top, denom};
 		return improper;
 	}	
+		
+	public static String reduceAnswer(int[] operand) {
+		int whole = operand[0] / operand[1];
+		int numerator = operand[0] % operand[1];
+		int denominator = (operand[1]);
+		if (whole != 0) {
+			numerator = Math.abs(numerator);
+		}
+		int gcf = gcf(numerator, denominator);
+		numerator = numerator / gcf;
+		denominator = denominator / gcf;
+		if (denominator == 0) {
+			return "ERROR: cannot divide by zero";
+		}else if (whole == 0 && numerator == 0) { 
+			return "0";
+		}else if  (numerator == 0) {
+			return "" + whole;
+		}else if ( whole == 0) {
+			return numerator +"/"+ denominator;
+		}
+		return whole +"_"+ numerator +"/"+ denominator;
+	}
 	
+	/*
+	 * This method takes 2 integers and return their greatest common factor. 
+	 */
+	public static int gcf(int num1, int num2) {
+		num1 = Math.abs(num1);
+		num2 = Math.abs(num2);
+		for(int i = num1; i > 1; i--) {
+			if(num1 % i == 0 && num2 % i ==0) {
+				return i;
+			}
+		}
+		return 1;
+	}
+
 }

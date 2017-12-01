@@ -171,5 +171,6 @@ public class FracCalcTestFinal
     @Test public void multipleOps11() {assertEquals("7", FracCalc.produceAnswer("5_3/4 - -6_8/8 - 5_3/4"));}
     @Test public void multipleOps12() {assertEquals("4", FracCalc.produceAnswer("2 * 3 - 6 + 1_1/2 + 1/2 - 1/2 - 1/2 + 3"));}
     @Test public void multipleOps13() {assertEquals("-4", FracCalc.produceAnswer("2 * 3 - 6 + -1_1/2 + -1/2 - -1/2 - -1/2 - 3"));}
-    @Test public void multipleOps14() {assertEquals("4", FracCalc.produceAnswer("20 / 5 * -1 + 8"));}
+  	@Test public void multipleOps14() {assertEquals("4", FracCalc.produceAnswer("20 / 5 * -1 + 8"));}
+
 }
