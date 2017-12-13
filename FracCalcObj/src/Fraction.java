@@ -40,12 +40,21 @@ public class Fraction {
 		
 	}
 	public int toInt(String str) {
-		
+	
 	}
 	public void simplfy() {
 	
 		}
 	public String toString( ) {
-		
+		return "whole:" +whole +" numerator:" +numerator +" denominator:" +denominator;
+	}
+	public int getNum() {
+		return numerator;
+	}
+	public int getWhole( ) {
+		return whole;
+	}
+	public int getDenom( ) {
+		return denominator;
 	}
 }
