@@ -2,16 +2,10 @@ package fracCalc;
 
 public class FracCalc {
 
-    public static void main(String[] args) {
-    	Scanner userInput = new Scanner(System.in);
-    	while(true) {//Accepts strings from the user until the user types "quit"
-    		System.out.println("Type a fractional expression to evaluate it or type \"quit\" to terminate the program.");
-    		String input = userInput.nextLine();
-    		if(input.equals("quit")) {
-    			break;
-    		}
-    		System.out.println(produceAnswer(input));
-    	}
+    public static void main(String[] args) 
+    {
+        // TODO: Read the input from the user and call produceAnswer with an equation
+
     }
     
     // ** IMPORTANT ** DO NOT DELETE THIS FUNCTION.  This function will be used to test your code

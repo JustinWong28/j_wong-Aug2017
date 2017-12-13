@@ -1,10 +1,12 @@
+package fracCalc;
+
 import java.util.Scanner;
 
 public class Fraction {
 	private int whole;
 	private int numerator;
 	private int denominator;
-	private String operator;
+
 			
 	public void parseFraction(String operand) {
 		whole = 0;
@@ -38,9 +40,6 @@ public class Fraction {
 
 	public void multiplyDivide() {
 		
-	}
-	public int toInt(String str) {
-	
 	}
 	public void simplfy() {
 	
