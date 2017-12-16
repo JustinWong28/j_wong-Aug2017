@@ -1,11 +1,21 @@
 package fracCalc;
 
+import java.util.Scanner;
+
 public class FracCalc {
 
-    public static void main(String[] args) 
-    {
-        // TODO: Read the input from the user and call produceAnswer with an equation
-
+    public static void main(String[] args) {
+       
+    	Scanner userInput = new Scanner(System.in);
+		boolean done = false;
+		while(!done) {
+			String expression = userInput.nextLine();
+			String answer = produceAnswer(expression);
+			System.out.println(answer);
+			if(expression.equals("quit")) {
+				done = true;
+			}
+		}
     }
     
     // ** IMPORTANT ** DO NOT DELETE THIS FUNCTION.  This function will be used to test your code
@@ -16,11 +26,21 @@ public class FracCalc {
     //        
     // The function should return the result of the fraction after it has been calculated
     //      e.g. return ==> "1_1/4"
-    public static String produceAnswer(String input)
-    { 
-        // TODO: Implement this function to produce the solution to the input
+    public static String produceAnswer(String input) { 
         
-        return "";
+    	String[] operand =  input.split(" ");
+		Fraction operand1 = new Fraction(operand[0]);
+		Fraction operand2 = new Fraction(operand[2]);
+		String operator = operand[1]; 
+		Fraction answer = null;
+	
+		if(operator.equals("+")) {
+			answer = operand1.add(operand2);
+		}else if(operator.equals("*")) {
+			answer = operand1.multiply(operand2);
+		}
+	
+        return answer.toString();
     }
 
     // TODO: Fill in the space below with any helper methods that you think you will need
