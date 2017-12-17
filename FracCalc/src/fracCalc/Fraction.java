@@ -56,11 +56,31 @@ public class Fraction {
 		
 		return answer;
 	}
+	public Fraction subtract(Fraction operand2) {
+		Fraction answer = new Fraction();
+		answer.setNumerator(this.numerator * operand2.getDenominator() - operand2.getNumerator() * this.denominator);
+		answer.setDenominator(this.denominator * operand2.getDenominator());
+		return answer;
+	}
 	public Fraction multiply(Fraction operand2) {
 		Fraction answer = new Fraction();
 		answer.setNumerator(this.numerator * operand2.getNumerator());
 		answer.setDenominator(this.denominator * operand2.getDenominator());
 		return answer;
+	}
+	public Fraction divide(Fraction operand2) {
+		
+		return null;
+	}
+	
+	public void reciprocal(Fraction operand2) {
+		Fraction answer = new Fraction();
+		if (operand2.getNumerator() < 0) {
+			answer.setDenominator(operand2.getDenominator() * -1);
+			answer.setNumerator(operand2.getNumerator() * -1);
+		}
+		answer.setNumerator(this.numerator * operand2.getDenominator());
+		answer.setDenominator(this.denominator * operand2.getNumerator());
 	}
 	public void simplfy() {
 	
