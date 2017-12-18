@@ -80,7 +80,6 @@ public class Calculate {
 	 */
 	public static String toMixedNumber(int a, int b) {
 		return a / b + " " + a % b + "/" + b;
-
 	}
 
 	/*

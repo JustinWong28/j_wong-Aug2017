@@ -33,16 +33,17 @@ public class FracCalc {
 		Fraction operand2 = new Fraction(operand[2]);
 		String operator = operand[1]; 
 		Fraction answer = null;
-	
+		
 		if(operator.equals("+")) {
 			answer = operand1.add(operand2);
+		}else if(operator.equals("-")) {
+			answer =  operand1.subtract(operand2);
 		}else if(operator.equals("*")) {
 			answer = operand1.multiply(operand2);
+		}else if(operator.equals("/")) {
+			answer = operand1.divide(operand2);
 		}
-	
-        return answer.toString();
-    }
-
-    // TODO: Fill in the space below with any helper methods that you think you will need
-    
+		answer.reduceAnswer();
+		return answer.toString();
+    }  
 }
