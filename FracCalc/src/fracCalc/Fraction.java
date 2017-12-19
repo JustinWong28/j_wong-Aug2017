@@ -43,8 +43,6 @@ public class Fraction {
 	public Fraction(int numerator, int denominator) {
 		this(numerator, denominator, 0);
 	}
-
-
 	
 	public Fraction add(Fraction operand2) {
 		Fraction answer = new Fraction();
