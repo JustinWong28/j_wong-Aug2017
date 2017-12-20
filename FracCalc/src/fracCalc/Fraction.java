@@ -1,3 +1,6 @@
+//Justin Wong
+//December 14, 2017
+//Frac Calc with objects
 package fracCalc;
 
 import java.util.Scanner;

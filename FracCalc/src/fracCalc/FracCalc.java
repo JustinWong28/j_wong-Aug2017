@@ -28,18 +28,19 @@ public class FracCalc {
 	//      e.g. return ==> "1_1/4"
 	public static String produceAnswer(String input) { 
 
-		String[] operand =  input.split(" ");
-		Fraction operand1 = new Fraction(operand[0]);
-		Fraction operand2 = new Fraction(operand[2]);
-		String operator = operand[1]; 
+		String[] operand =  input.split(" "); 
 		Fraction answer = null;
-
-
+		Fraction operand1 = new Fraction(operand[0]);
+		Fraction operand2;
+		
+		
 		for (int i = 2; i < operand.length; i+=2) {
-			Fraction newOperand = new Fraction(operand[i]);
-			operator = operand[i-1];
-
-			if(operator.equals("+")) {
+			operand2 = new Fraction(operand[i]);
+			String operator = operand[i-1];
+			if(operand1.getDenominator() == 0 || operand2.getDenominator() == 0) {
+				return "Cannot divide by zero.";
+		
+			}else if(operator.equals("+")) {
 				answer = operand1.add(operand2);
 			}else if(operator.equals("-")) {
 				answer =  operand1.subtract(operand2);
@@ -49,7 +50,9 @@ public class FracCalc {
 				answer = operand1.divide(operand2);
 			}
 			answer.reduceAnswer();
+		}
+		
 			return answer.toString();
-		}  
 	}
 }
+	
