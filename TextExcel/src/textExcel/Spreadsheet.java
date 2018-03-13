@@ -4,18 +4,19 @@ package textExcel;
 
 public class Spreadsheet implements Grid
 {
-
+public spreadsheet() {
+	
+}
 	@Override
 	public String processCommand(String command)
 	{
 		// TODO Auto-generated method stub
-		return null;
+		return "";
 	}
 
 	@Override
-	public int getRows()
-	{
-		// TODO Auto-generated method stub
+	public int getRows() {
+		
 		return 0;
 	}
 
