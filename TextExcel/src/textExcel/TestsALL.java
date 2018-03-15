@@ -21,19 +21,19 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
     TestsALL.A_Checkpoint1.class,
-    TestsALL.A_Checkpoint2.class,
-    TestsALL.A_Checkpoint3.class,
+    //TestsALL.A_Checkpoint2.class,
+    //TestsALL.A_Checkpoint3.class,
     //TestsALL.A_Final.class,
-    TestsALL.B_Checkpoint1.class,
-    TestsALL.B_Final.class,
-    TestsALL.C_Checkpoint1.class,
-    TestsALL.C_Final.class,
-    TestsALL.ExtraCreditCommandErrors.class,
-    TestsALL.ExtraCreditCommandHistory.class,
-    TestsALL.ExtraCreditCircularReferenceErrors.class,
-    TestsALL.ExtraCreditEvaluationErrors.class,
-    TestsALL.ExtraCreditOperationOrder.class,
-    TestsALL.C_ExtraCreditHeterogeneousSorting.class,
+    //TestsALL.B_Checkpoint1.class,
+    //TestsALL.B_Final.class,
+    //TestsALL.C_Checkpoint1.class,
+    //TestsALL.C_Final.class,
+    //TestsALL.ExtraCreditCommandErrors.class,
+    //TestsALL.ExtraCreditCommandHistory.class,
+    //TestsALL.ExtraCreditCircularReferenceErrors.class,
+    //TestsALL.ExtraCreditEvaluationErrors.class,
+    //TestsALL.ExtraCreditOperationOrder.class,
+    //TestsALL.C_ExtraCreditHeterogeneousSorting.class,
 })
 
 public class TestsALL

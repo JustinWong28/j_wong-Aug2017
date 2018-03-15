@@ -9,15 +9,14 @@ public class TextExcel
 
 	public static void main(String[] args)
 	{
-	    Scanner userInput = new Scanner (System.in);
-	    Boolean done = false;
-	    while (!done) {
-	    
-	    }
-	    String exit = userInput.next();
-	    if (exit.equals("quit")) {
-	    	done = true;
-	    }
-	    
-	    }
-	    }
+		Scanner userInput = new Scanner (System.in);
+		Boolean done = false;
+		while (!done) {
+			String exit = userInput.next();
+			if (exit.equals("quit")) {
+				done = true;
+			}
+		}
+	}
+
+}
