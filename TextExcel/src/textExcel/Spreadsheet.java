@@ -28,10 +28,9 @@ public class Spreadsheet implements Grid {
 	}
 
 	@Override
-	public Cell getCell(Location loc)
-	{
-		// TODO Auto-generated method stub
-		return null;
+	public Cell getCell(Location loc) {
+		
+		return grid[loc.getRow];
 	}
 
 	@Override
