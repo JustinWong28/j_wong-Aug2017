@@ -30,13 +30,16 @@ public class Spreadsheet implements Grid {
 	@Override
 	public Cell getCell(Location loc) {
 		
-		return grid[loc.getRow];
+		return grid[loc.getRow()][loc.getCol()];
 	}
 
 	@Override
 	public String getGridText()
 	{
-		// TODO Auto-generated method stub
+		String topLetter = "   |";
+		for(char i = 'A'; i < 'L'; i++) {
+			topLetter += i+ "         |";
+		}
 		return null;
 	}
 
