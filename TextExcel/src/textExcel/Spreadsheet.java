@@ -17,16 +17,21 @@ public class Spreadsheet implements Grid {
 	public String processCommand(String command) {
 		String[] Command = command.split(" ",3);
 		if(Command.length == 2 && Command[0].toLowerCase().equals("clear")) {
-			return clearCell(Command[1]);
+			clearCell(Command[1]);
+			return getGridText();
 		}else if (Command.length == 3){ 
-			return assignValue(Command[0], Command[2]);
+			assignValue(Command[0], Command[2]);
+			return getGridText();
 		}else{
 			if(Command.length == 1 && Command[0].toLowerCase().equals("clear")) {
-		return clear();
+		clear();
+		return getGridText();
 	}else{
-			return inspectCell(Command[0]);
+		SpreadsheetLocation loc = new SpreadsheetLocation(Command[0]);
+		return getCell(loc).fullCellText();
 		}
-	}
+			}
+		
 	}
 	@Override
 	public int getRows() {
@@ -50,7 +55,7 @@ public class Spreadsheet implements Grid {
 	{
 		String topLetter = "   |";
 		for(char c = 'A'; c < 'L'; c++) {
-			topLetter += c+ "         |";
+			topLetter += c + "         |";
 			
 			String numbers = "\n";
 			for(int i = 0; i < 20; i++) {

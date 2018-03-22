@@ -9,12 +9,16 @@ public class TextExcel
 
 	public static void main(String[] args)
 	{
-		Scanner userInput = new Scanner (System.in);
+		Scanner userInput = new Scanner (System.in); 
+		Spreadsheet s = new Spreadsheet();
 		Boolean done = false;
 		while (!done) {
-			String exit = userInput.next();
-			if (exit.equals("quit")) {
+			String input = userInput.nextLine();
+			
+			if ( userInput.next().equals("quit")) {
 				done = true;
+			}else { 
+				System.out.println(s.processCommand(input));
 			}
 		}
 	}
