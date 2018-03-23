@@ -53,35 +53,34 @@ public class Spreadsheet implements Grid {
 	@Override
 	public String getGridText()
 	{
-		String topLetter = "   |";
-		for(char c = 'A'; c < 'L'; c++) {
-			topLetter += c + "         |";
-			
-			String numbers = "\n";
-			for(int i = 0; i < 20; i++) {
-				if(i < 9) {
-					numbers += (i+1);
-					numbers += "  |";
-					for(int j = 0; j < 12; j++) {
-						numbers += grid[i][j].abbreviatedCellText();
-						numbers += "|";
-					}
-					numbers += "\n";
-				}else {
-					numbers += (i+1);
-					numbers += " |";
-					for(int j = 0; j < 12; j++) {
-						numbers += grid[i][j].abbreviatedCellText();
-						numbers += "|";
-					}
-					numbers += "\n";
-				}	
-			}
-			return topLetter + numbers;
+		String colLetter = "   |";
+		for(char c = 'A'; c <= 'L'; c++) {
+			colLetter += c + "         |";
 		}
-		return topLetter;
+
+		String rowNumbers = "\n";
+		for(int i = 0; i < 20; i++) {
+			if(i < 9) {															//adds extra space for numbers 1-9 
+				rowNumbers += (i+1);
+				rowNumbers += "  |";
+				for(int j = 0; j < 12; j++) {
+					rowNumbers += grid[i][j].abbreviatedCellText();
+					rowNumbers += "|";
+					}
+					rowNumbers += "\n";
+				}else {
+					rowNumbers += (i+1);
+					rowNumbers += " |";
+					for(int j = 0; j < 12; j++) {
+						rowNumbers += grid[i][j].abbreviatedCellText();
+						rowNumbers += "|";
+					}
+					rowNumbers += "\n";
+				}
+			}
+		return colLetter + rowNumbers;
+
 	}
-	
 	//returns value of cell using abbreviatedCellText()
 	public String inspectCell(String cell) {
 		SpreadsheetLocation loc = new SpreadsheetLocation(cell);
