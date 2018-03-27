@@ -1,28 +1,27 @@
 package textExcel;
 
-public abstract class RealCell {
+public abstract class RealCell implements Cell {
+	
+	private String input;
 	
 	public RealCell(String input) {
-		super();
+		this.input = input;
 	}
 	
-	public String abbreviatedCellText() {
-		String cellText = Double.toString(getDoubleValue());
-		if(cellText.length() <10) {
-			if(!cellText.contains(" . ")) {
-				cellText += ".0";
-			}
-			return addspaces(cellText);
-		}else { 
-			return cellText.substring(0, 10);
-		}
-	}
+	public abstract String abbreviatedCellText();
 	
-	public String fullCellText() {
-		return getRealCell();
-	}
+	public abstract String fullCellText();
 	
-	public String getDoubleCell() {
-		return Double.parseDouble(getRealCell());
-	}
+	public abstract double getDoubleValue();
+	
+	public String getRealCell() {
+		 return input;
+	 }
+	 
+	 public String addSpaces(String text) {
+		 while(text.length() < 10) {
+			 text += " ";
+		 }
+		 return text;
+	 }
 }
