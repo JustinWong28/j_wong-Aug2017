@@ -20,14 +20,14 @@ public class FormulaCell extends RealCell{
 
 	@Override
 	public String fullCellText() {
-		// TODO Auto-generated method stub
 		return getDoubleValue() + "";
 	}
 
 	@Override
 	public double getDoubleValue() {
 		String[] formula = getRealCell().split(" ");
-		double answer = 0.0;
+		double answer = Double.parseDouble(formula[1]);
+		
 		return 0;
 	}
 

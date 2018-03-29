@@ -90,8 +90,19 @@ public class Spreadsheet implements Grid {
 	//assigns value to given
 	public String assignValue(String cell, String input) {
 		SpreadsheetLocation loc = new SpreadsheetLocation(cell);
+		if(input.substring(0, 1).equals("\"")) {
 		grid[loc.getRow()][loc.getCol()] = new TextCell(input);
-		return getGridText();
+		}
+		else if(input.substring(input.length()-1).equals("%")) {
+			grid[loc.getRow()][loc.getCol()] = new PercentCell(input);
+		}
+		else if(input.charAt(0) == ('(')) {
+			grid[loc.getRow()][loc.getCol()] = new FormulaCell(input);
+		}
+		else {
+			grid[loc.getRow()][loc.getCol()] = new ValueCell(input);
+		}
+			return getGridText();
 	}
 	
 	//clears the entire sheet
