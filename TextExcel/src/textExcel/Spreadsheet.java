@@ -14,20 +14,21 @@ public class Spreadsheet implements Grid {
 			}
 		}
 	}
+	
 	public String processCommand(String command) {
-		String[] Command = command.split(" ",3);
-		if(Command.length == 2 && Command[0].toLowerCase().equals("clear")) {
-			clearCell(Command[1]);
+		String[] parsedCommand = command.split(" ");
+		if(parsedCommand.length == 2 && parsedCommand[0].toLowerCase().equals("clear")) {
+			clearCell(parsedCommand[0]);
 			return getGridText();
-		}else if (Command.length == 3){ 
-			assignValue(Command[0], Command[2]);
+		}else if (parsedCommand.length == 3) { 
+			assignValue(parsedCommand[0], parsedCommand[2]);
 			return getGridText();
 		}else{
-			if(Command.length == 1 && Command[0].toLowerCase().equals("clear")) {
+			if(parsedCommand.length == 1 && parsedCommand[0].toLowerCase().equals("clear")) {
 		clear();
 		return getGridText();
 	}else{
-		SpreadsheetLocation loc = new SpreadsheetLocation(Command[0]);
+		SpreadsheetLocation loc = new SpreadsheetLocation(parsedCommand[0]);
 		return getCell(loc).fullCellText();
 		}
 			}
