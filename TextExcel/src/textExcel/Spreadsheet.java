@@ -16,19 +16,19 @@ public class Spreadsheet implements Grid {
 	}
 	
 	public String processCommand(String command) {
-		String[] parsedCommand = command.split(" ");
-		if(parsedCommand.length == 2 && parsedCommand[0].toLowerCase().equals("clear")) {
+		String[] parsedCommand = command.split(" ");			//split at the spaces
+		if(parsedCommand.length == 2 && parsedCommand[0].toLowerCase().equals("clear")) {		//if length is 2 ("clear A1"), clear cell
 			clearCell(parsedCommand[0]);
 			return getGridText();
-		}else if (parsedCommand.length == 3) { 
+		}else if (parsedCommand.length == 3) { 													//if length is 3 ("A1 = 2"), assign value to A1
 			assignValue(parsedCommand[0], parsedCommand[2]);
 			return getGridText();
 		}else{
-			if(parsedCommand.length == 1 && parsedCommand[0].toLowerCase().equals("clear")) {
+			if(parsedCommand.length == 1 && parsedCommand[0].toLowerCase().equals("clear")) {	//if length is 1 and equals ("clear"), clear cell
 		clear();
 		return getGridText();
 	}else{
-		SpreadsheetLocation loc = new SpreadsheetLocation(parsedCommand[0]);
+		SpreadsheetLocation loc = new SpreadsheetLocation(parsedCommand[0]);					//if length is 1 
 		return getCell(loc).fullCellText();
 		}
 			}
