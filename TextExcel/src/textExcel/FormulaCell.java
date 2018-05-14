@@ -1,7 +1,8 @@
 package textExcel;
 
 public class FormulaCell extends RealCell{
-
+	
+	private Spreadsheet grid;
 	public FormulaCell(String input) {
 		super(input);
 		// TODO Auto-generated constructor stub
@@ -79,16 +80,16 @@ public class FormulaCell extends RealCell{
 		return sum;
 	}
 
-	public double avg(String formula) {
+ double avg(String formula) {
 		String[] operands = formula.split("-");	
-		char startLetter = operands[0].charAt(0);
-		char endLetter = operands[1].charAt(0);
-		int startNum = Integer.parseInt(operands[0].substring(1));
-		int endNum = Integer.parseInt(operands[1].substring(1));
-		double s = sum(formula);													//finding the sum of a group of cells
-		int totalCol = (endLetter - startLetter) + 1;
-		int totalRow = (endNum - startNum) + 1;
-		return s/(totalCol * totalRow);											// divided by the total number of cells
+		char firstLetter = operands[0].charAt(0);
+		char lastLetter = operands[1].charAt(0);
+		int firstNum = Integer.parseInt(operands[0].substring(1));
+		int lastNum = Integer.parseInt(operands[1].substring(1));
+		double sum1 = sum(formula);													//finding the sum of a group of cells
+		int totalCol = (lastLetter - firstLetter) + 1;
+		int totalRow = (lastNum - firstNum) + 1;
+		return sum1/(totalCol * totalRow);											// divided by the total number of cells
 	}
 
 	

@@ -7,7 +7,7 @@ public class PercentCell extends RealCell{
 	}
 
 	@Override
-	public String abbreviatedCellText() {
+	public String abbreviatedCellText() {										//returns only percent with integer
 		int decimal = getRealCell().indexOf(".");
 		String wholeNumber = getRealCell().substring(0, decimal);
 		if(wholeNumber.length() < 10) {
@@ -24,7 +24,7 @@ public class PercentCell extends RealCell{
 	}
 
 	@Override
-	public double getDoubleValue() {
+	public double getDoubleValue() {														//returns percent in decimal form
 		String percent = getRealCell().substring(0, getRealCell().length() - 1);
 		Double realPercent = Double.parseDouble(percent) / 100.0;
 		return realPercent;
