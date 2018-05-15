@@ -16,7 +16,7 @@ public class Spreadsheet implements Grid {
 	}
 	
 	public String processCommand(String command) {
-		String[] parsedCommand = command.split(" ");			//split at the spaces
+		String[] parsedCommand = command.split(" ", 3);			//split at the spaces
 		if(parsedCommand.length == 2 && parsedCommand[0].toLowerCase().equals("clear")) {		//if length is 2 ("clear A1"), clear cell
 			clearCell(parsedCommand[0]);
 			return getGridText();
@@ -27,12 +27,12 @@ public class Spreadsheet implements Grid {
 			if(parsedCommand.length == 1 && parsedCommand[0].toLowerCase().equals("clear")) {	//if length is 1 and equals ("clear"), clear cell
 		clear();
 		return getGridText();
-	}else{
-		SpreadsheetLocation loc = new SpreadsheetLocation(parsedCommand[0]);					//if length is 1 
-		return getCell(loc).fullCellText();
+			}else if(parsedCommand.length==1&&!parsedCommand[0].toLowerCase().equals("clear")){     			//cell inspection (e.g., A1). This should return the value at that cell
+			SpreadsheetLocation loc = new SpreadsheetLocation(parsedCommand[0]);
+			return getCell(loc).fullCellText();
 		}
-			}
-		
+		}
+		return "";
 	}
 	@Override
 	public int getRows() {
@@ -98,7 +98,7 @@ public class Spreadsheet implements Grid {
 			grid[loc.getRow()][loc.getCol()] = new PercentCell(input);
 		}
 		else if(input.charAt(0) == ('(')) {
-			grid[loc.getRow()][loc.getCol()] = new FormulaCell(input);
+			grid[loc.getRow()][loc.getCol()] = new FormulaCell(input, this);
 		}
 		else {
 			grid[loc.getRow()][loc.getCol()] = new ValueCell(input);
@@ -117,9 +117,8 @@ public class Spreadsheet implements Grid {
 	}
 	
 	//clears one cell
-	public String clearCell(String cell) {
+	public void clearCell(String cell) {
 		SpreadsheetLocation loc = new SpreadsheetLocation(cell);
 		grid[loc.getRow()][loc.getCol()] = new EmptyCell();
-		return getGridText();
 	}
 }

@@ -3,8 +3,9 @@ package textExcel;
 public class FormulaCell extends RealCell{
 	
 	private Spreadsheet grid;
-	public FormulaCell(String input) {
+	public FormulaCell(String input, Spreadsheet grid) {
 		super(input);
+		this.grid = grid;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -12,11 +13,11 @@ public class FormulaCell extends RealCell{
 	public String abbreviatedCellText() {
 		String cellText = getDoubleValue() + "";
 		if(cellText.length() < 10) {
-			addSpaces(cellText);
+			return addSpaces(cellText);
 		}else {
-			cellText = cellText.substring(0,10);
+			return cellText.substring(0,10);
 		}
-		return cellText;
+		
 	}
 
 	@Override
@@ -25,12 +26,12 @@ public class FormulaCell extends RealCell{
 	}
 	
 	public double getDoubleValue() {
-		String formula = getRealCell().substring(2, getRealCell().length()-2);		//getting rid of ()
-		String[] arr = formula.split(" ");											//splitting the formula by spaces 
+		String formula = getRealCell().substring(2, getRealCell().length()-2);		//removes ()
+		String[] arr = formula.split(" ");											//split by spaces 
 		double result;
-		if(arr[0].toLowerCase().equals("sum")) {										//sum
+		if(arr[0].toLowerCase().equals("sum")) {										//sum of numbers
 			result = sum(arr[1].toLowerCase());
-		}else if(arr[0].toLowerCase().equals("avg")) {								//average
+		}else if(arr[0].toLowerCase().equals("avg")) {								//averages numbers
 			result = avg(arr[1].toLowerCase());
 		}else{
 			result = findCell(arr[0]);												//if there is only one cell reference, it will find the values in that cell.
@@ -62,18 +63,18 @@ public class FormulaCell extends RealCell{
 
 	public double sum(String formula) {
 		String[] operands = formula.toLowerCase().split("-");							//separate the two ends
-		char startLetter = operands[0].charAt(0);
-		char endLetter = operands[1].charAt(0);
-		int startNum = Integer.parseInt(operands[0].substring(1));
-		int endNum = Integer.parseInt(operands[1].substring(1));
+		char firstLetter = operands[0].charAt(0);
+		char lastLetter = operands[1].charAt(0);
+		int firsttNum = Integer.parseInt(operands[0].substring(1));
+		int lastNum = Integer.parseInt(operands[1].substring(1));
 		double sum = 0;
-		for(char i = startLetter; i <= endLetter; i++) {
-			for(int j = startNum; j <= endNum; j++) {
+		for(char i = firstLetter; i <= lastLetter; i++) {
+			for(int j = firsttNum; j <= lastNum; j++) {
 				SpreadsheetLocation loc = new SpreadsheetLocation("" + i + j);		//since i and j are not strings, I put "" in front of them in order to cast them into string first.
 				Cell cell = grid.getCell(loc);										//get cells from the original grid
 				if(cell instanceof RealCell) {
-					RealCell temp = (RealCell)(cell);								//cast the Cell into RealCell.
-					sum += temp.getDoubleValue();									//add up the values from each cell.
+					RealCell temp = (RealCell)(cell);								//casts Cell into RealCell.
+					sum += temp.getDoubleValue();									//add values from each cell.
 				}
 			}
 		}
@@ -86,10 +87,10 @@ public class FormulaCell extends RealCell{
 		char lastLetter = operands[1].charAt(0);
 		int firstNum = Integer.parseInt(operands[0].substring(1));
 		int lastNum = Integer.parseInt(operands[1].substring(1));
-		double sum1 = sum(formula);													//finding the sum of a group of cells
+		double sum1 = sum(formula);													//finds sum of group of cells
 		int totalCol = (lastLetter - firstLetter) + 1;
 		int totalRow = (lastNum - firstNum) + 1;
-		return sum1/(totalCol * totalRow);											// divided by the total number of cells
+		return sum1/(totalCol * totalRow);											// divide by the total number of cells
 	}
 
 	
