@@ -52,9 +52,10 @@ public class FormulaCell extends RealCell{
 		}
 		return result;
 	}
+	
 	public double findCell(String cell) {											//Find other cells' values
-		if(!(Character.isDigit(cell.charAt(0))) && !(cell.charAt(0) == '-')){			//test whether the input could be a cell or an actual number.
-			RealCell a = (RealCell) grid.getCell(new SpreadsheetLocation(cell));		//it gets the cell from this grid and cast it into RealCell.
+		if(!(Character.isDigit(cell.charAt(0))) && !(cell.charAt(0) == '-')){			//determines if a cell or an actual number.
+			RealCell a = (RealCell) grid.getCell(new SpreadsheetLocation(cell));		//gets the cell from grid and cast into RealCell.
 			return a.getDoubleValue();												//return cell's value		
 		}else {
 			return Double.parseDouble(cell);
@@ -70,7 +71,7 @@ public class FormulaCell extends RealCell{
 		double sum = 0;
 		for(char i = firstLetter; i <= lastLetter; i++) {
 			for(int j = firsttNum; j <= lastNum; j++) {
-				SpreadsheetLocation loc = new SpreadsheetLocation("" + i + j);		//since i and j are not strings, I put "" in front of them in order to cast them into string first.
+				SpreadsheetLocation loc = new SpreadsheetLocation("" + i + j);		//since i and j are not strings, put "" to cast into string
 				Cell cell = grid.getCell(loc);										//get cells from the original grid
 				if(cell instanceof RealCell) {
 					RealCell temp = (RealCell)(cell);								//casts Cell into RealCell.
