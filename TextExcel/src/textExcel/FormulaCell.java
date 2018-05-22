@@ -53,12 +53,12 @@ public class FormulaCell extends RealCell{
 		}
 		return result;
 	}
-
+//Mark Ding helped me with this method
 	public double getCellValue(String cell) {											//Find other cells' values
 		if(!(Character.isDigit(cell.charAt(0))) && !(cell.charAt(0) == '-')){			//determines if a cell or an actual number.
 			RealCell c = (RealCell) grid.getCell(new SpreadsheetLocation(cell));		//gets the cell from grid and cast into RealCell.
 			return c.getDoubleValue();												//return cell's value		
-		}else {
+		}else {								
 			return Double.parseDouble(cell);
 		}	
 	}
