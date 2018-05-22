@@ -16,7 +16,7 @@ public class Spreadsheet implements Grid {
 	}
 	
 	public String processCommand(String command) {
-		String[] parsedCommand = command.split(" ", 3);			//split at the spaces
+		String[] parsedCommand = command.split(" ", 3);			//split at the spaces, into 3 elements
 		if(parsedCommand.length == 2 && parsedCommand[0].toLowerCase().equals("clear")) {		//if length is 2 ("clear A1"), clear cell
 			clearCell(parsedCommand[0]);
 			return getGridText();

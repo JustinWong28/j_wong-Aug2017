@@ -12,7 +12,7 @@ public class FormulaCell extends RealCell{
 	@Override
 	public String abbreviatedCellText() {
 		String text = getDoubleValue() + "";
-		if(text.length() < 10) {
+		if(text.length() < 10) {							//add spaces so cell is ten spaces
 			return addSpaces(text);
 		}else {
 			return text.substring(0,10);
@@ -26,7 +26,7 @@ public class FormulaCell extends RealCell{
 
 	//this method returns double value of cell after calculating formula
 	public double getDoubleValue() {
-		String formula = getRealCell().substring(2, getRealCell().length()-2);		//removes ()
+		String formula = getRealCell().substring(2, getRealCell().length()-2);		//removes (), "A1 + B4"
 		String[] arr = formula.split(" ");											//split by spaces 
 		double result;
 		String firstElement = arr[0];														//first element of array
@@ -54,12 +54,12 @@ public class FormulaCell extends RealCell{
 		return result;
 	}
 //Mark Ding helped me with this method
-	public double getCellValue(String cell) {											//Find other cells' values
-		if(!(Character.isDigit(cell.charAt(0))) && !(cell.charAt(0) == '-')){			//determines if a cell or an actual number.
-			RealCell c = (RealCell) grid.getCell(new SpreadsheetLocation(cell));		//gets the cell from grid and cast into RealCell.
-			return c.getDoubleValue();												//return cell's value		
+	public double getCellValue(String cellName) {												//Finds value of other cell
+		if(!(Character.isDigit(cellName.charAt(0))) && !(cellName.charAt(0) == '-')){			//determines if formula references a cell or is an actual number.
+			RealCell c = (RealCell) grid.getCell(new SpreadsheetLocation(cellName));			//gets cell from grid and cast into RealCell.
+			return c.getDoubleValue();															//return value of cell		
 		}else {								
-			return Double.parseDouble(cell);
+			return Double.parseDouble(cellName);
 		}	
 	}
 
